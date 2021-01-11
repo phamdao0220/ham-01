@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    td{
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+<table id="board" border="1px solid black" cellspacing="0"></table>
+<body>
+<script>
+    const MAX_ROW = 10;
+    const MAX_COL = 20;
+    const EMPTY_VALUE = "";
+    const VALUE_X = "x";
+    const VALUE_O ="o";
+    const PLAYER_1 = 1;
+    const PLAYER_2 = 2;
+
+    let turn = PLAYER_1;
+
+    function createBoard() {
+        let str = "";
+        for (let i = 0; i < MAX_ROW; i++) {
+            str += '<tr>';
+            for (let j = 0; j < MAX_COL; j++) {
+                str +="<td onclick='clickCell(this)'></td>";
+            }
+            str+="</tr>";
+        }
+        document.getElementById("board").innerHTML = str;
+    }
+
+    function clickCell(cell) {
+        if(cell.innerHTML === EMPTY_VALUE){
+            if(turn === PLAYER_1){
+                cell.innerHTML = VALUE_X;
+                turn = PLAYER_2;
+            }else {
+                cell.innerHTML = VALUE_O;
+                turn = PLAYER_1;
+            }
+        }
+    }
+    createBoard();
+
+</script>
+</body>
+</html>
